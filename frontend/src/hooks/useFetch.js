@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function useFetch(url){
 
-    const [pieces, setPieces] = useState(null);
+    const [fetchedPieces, setFetchedPieces] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
 
@@ -13,7 +13,7 @@ export default function useFetch(url){
                 setLoading(true);
                 try{
                     const res = await axios.get(url);
-                    setPieces(res.data.data);
+                    setFetchedPieces(res.data.data);
                     setLoading(false);
                 } catch (error) {
                     setError(error);
@@ -25,6 +25,6 @@ export default function useFetch(url){
         [url]
     );
 
-    return { pieces, error, loading }
+    return { fetchedPieces, error, loading }
 
 }
